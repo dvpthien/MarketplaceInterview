@@ -33,7 +33,18 @@ namespace Marketplace.Interview.Tests
                             new RegionShippingCost{DestinationRegion = RegionShippingCost.Regions.RestOfTheWorld, Amount = 2m},
                         }
                     }
-                }
+                },
+                {
+                    "NewShipping", new NewShipping
+                    {
+                        PerRegionCosts = new List<RegionShippingCost>
+                        {
+                            new RegionShippingCost{DestinationRegion = RegionShippingCost.Regions.UK, Amount = .5m},
+                            new RegionShippingCost{DestinationRegion = RegionShippingCost.Regions.Europe, Amount = 1m},
+                            new RegionShippingCost{DestinationRegion = RegionShippingCost.Regions.RestOfTheWorld, Amount = 2m},
+                        }
+                    }
+                },
             };
 
             var ser = SerializationHelper.DataContractSerialize(shippings);
@@ -53,7 +64,7 @@ namespace Marketplace.Interview.Tests
         [Test]
         public void GetConstants()
         {
-            var constants = ReflectionHelpers.GetConstants(typeof (RegionShippingCost.Regions));
+            var constants = ReflectionHelpers.GetConstants(typeof(RegionShippingCost.Regions));
 
             Assert.That(constants.Count(), Is.EqualTo(3));
         }
